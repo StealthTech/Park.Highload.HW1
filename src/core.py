@@ -146,6 +146,7 @@ def start_polling(sock, options):
 def start_server(options):
     print_prefix('Server is starting on {}:{}.'.format(options['ip_addr'], options['port']))
     print_prefix('Document root: {}.'.format(options['document_root']))
+    print_prefix('CPU limit: {}'.format(options['cpu_limit']))
 
     sock = get_socket(options['ip_addr'], options['port'])
 
