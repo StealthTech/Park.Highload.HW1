@@ -113,7 +113,7 @@ def process_events(epoll, sock, options):
                     while True:
                         connection, address = sock.accept()
                         connection.setblocking(0)
-                        epoll.register(connection.fileno(), select.EPOLLIN | select.EPOLLET)
+                        epoll.register(connection.fileno(), select.EPOLLIN | select.EPOLLET)  # Edge Triggered
                         connections[connection.fileno()] = connection
                         requests[connection.fileno()] = b''
                 except socket.error:

@@ -13,6 +13,25 @@ def get_configuration(filepath=None):
     if filepath is None:
         filepath = CONFIG_DEFAULT_PATH
 
+    options = {
+        'ip_addr': '0.0.0.0',
+        'port': 80,
+    }
+    with open(filepath, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            split = line.split()
+            try:
+                options[split[0]] = int(split[1])
+            except ValueError:
+                options[split[0]] = split[1]
+    return options
+
+
+def _get_configuration(filepath=None):
+    if filepath is None:
+        filepath = CONFIG_DEFAULT_PATH
+
     config = configparser.ConfigParser()
     if os.path.exists(filepath):
         config.read_file(open(filepath))
